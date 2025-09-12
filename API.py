@@ -47,8 +47,6 @@ class Task(BaseModel):
     id: int | None = None
     title: str
     description: str | None = None
-    #start_date: datetime | None = None
-    #due_date: datetime | None = None
     status: bool = False
 
 # Helper: rebuild Task with ID
@@ -71,8 +69,6 @@ def create_task(task: Task):
     tasks[task_id] = {
         "title": task.title,
         "description": task.description,
-        "start_date": task.start_date,
-        "due_date": task.due_date,
         "status": task.status,
     }
     save_tasks(tasks)
@@ -94,8 +90,6 @@ def update_task(task_id: int, updated_task: Task):
     tasks[str(task_id)] = {
         "title": updated_task.title,
         "description": updated_task.description,
-        "start_date": updated_task.start_date,
-        "due_date": updated_task.due_date,
         "status": updated_task.status,
     }
     save_tasks(tasks)
@@ -109,5 +103,6 @@ def delete_task(task_id: int):
     del tasks[str(task_id)]
     save_tasks(tasks)
     return {"message": "Task deleted"}
+
 
 
